@@ -1,28 +1,62 @@
 import javax.swing.*;
-import java.util.ArrayList;
+import javax.swing.plaf.ColorUIResource;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.border.*;
 
 public class ViewAccountsWindow extends JFrame {
-    private JPanel panelMain;
+    private JPanel mainPanel;
 
-    public static void setUpWindow(ViewAccountsWindow window, String title, ArrayList<Integer> sizes) {
-        /**
-         * This is used
-         * @param window = The window instance
-         * @param title = The title of the window
-         * @param sizes = The array of measurements for window (x,y)
-         */
-        window.setTitle(title);
-        window.setSize(sizes.get(0), sizes.get(1));
-        window.setResizable(false);
-    }
+    private ImageIcon bgGradient;
 
 
     public ViewAccountsWindow() {
-        /**
-         * This is an instance of the ViewAccountsWindow
-         */
 
-        setContentPane(panelMain); // This will show the widgets in the app
+        // Displays the content
+        setContentPane(mainPanel);
+
+        // Clicking the "X" exit button, brings user back to start window
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                StartWindow window = new StartWindow();
+                window.setVisible(true);
+
+                // This makes it so the window will stay where to window was last position
+                window.setLocation(getLocation());
+
+                setVisible(false);
+
+            }
+        });
+
+        // Window setup
+        setSize(750, 800);
+        setResizable(false);
+        setLocationRelativeTo(null); // Centers the window
+        setTitle("AccountGuardUI - View Accounts Window");
+        Image titleBarIcon = new ImageIcon("assets/imgs/lock-logo.png").getImage();
+        setIconImage(titleBarIcon);
+
+        // Adding a background image to mainPanel
+        bgGradient = new ImageIcon("assets/imgs/bg.png");
+        Border border = new Border() {
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                g.drawImage(bgGradient.getImage(), x, y, width, height, null);
+            }
+            public Insets getBorderInsets(Component c) {
+                return new Insets(bgGradient.getIconHeight(), bgGradient.getIconWidth(), bgGradient.getIconHeight(), bgGradient.getIconWidth());
+            }
+            public boolean isBorderOpaque() {
+                return true;
+            }
+        };
+        mainPanel.setBorder(border);
+        mainPanel.setOpaque(false);
+
+        // Btn colors
+
     }
 
 
@@ -33,18 +67,9 @@ public class ViewAccountsWindow extends JFrame {
 
         // Variables
         ViewAccountsWindow window = new ViewAccountsWindow();
-        ArrayList<Integer> sizes = new ArrayList<>();
-
-        // Adding the measurements to the sizes array
-        sizes.add(900);
-        sizes.add(900);
-
-        setUpWindow(window, "AccountGuardUI - View Accounts Window", sizes);
 
         // Showing the app
         window.setVisible(true);
 
     }
-
-
 }

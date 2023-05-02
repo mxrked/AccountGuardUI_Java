@@ -1,15 +1,194 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="StartWindow">
-  <grid id="27dc6" binding="panelMain" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="0" left="0" bottom="0" right="0"/>
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="700" height="700"/>
+      <xy x="20" y="20" width="987" height="607"/>
     </constraints>
     <properties>
-      <maximumSize width="700" height="700"/>
-      <minimumSize width="700" height="700"/>
+      <background color="-15395562"/>
     </properties>
     <border type="none"/>
-    <children/>
+    <children>
+      <grid id="4b179" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="c189f" class="javax.swing.JLabel" binding="startWindow_MainHeadingTextLabel">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="1.0" ipadx="10"/>
+            </constraints>
+            <properties>
+              <font name="Public Sans" size="32" style="1"/>
+              <foreground color="-1"/>
+              <text value="AccountGuardUI"/>
+            </properties>
+          </component>
+          <component id="e7a9e" class="javax.swing.JLabel" binding="startWindow_MainHeadingImgLabel">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="1.0"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="e5e1c" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="1c383" class="javax.swing.JLabel" binding="startWindow_SubTextLabel">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Public Sans" size="18" style="0"/>
+              <foreground color="-10592674"/>
+              <text value="Add. Secured. Easy."/>
+            </properties>
+          </component>
+          <hspacer id="3c421">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="9a901">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <grid id="91b51" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="40"/>
+                <maximum-size width="-1" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <opaque value="false"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+      <grid id="f4e25" layout-manager="GridLayoutManager" row-count="2" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="3429b" class="javax.swing.JButton" binding="startWindow_AddAccountBtn">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="40"/>
+                <maximum-size width="-1" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-7482624"/>
+              <borderPainted value="false"/>
+              <focusPainted value="true"/>
+              <focusable value="true"/>
+              <font name="Public Sans" size="12" style="0"/>
+              <foreground color="-16777216"/>
+              <maximumSize width="120" height="80"/>
+              <minimumSize width="120" height="80"/>
+              <requestFocusEnabled value="true"/>
+              <selected value="false"/>
+              <text value="Add Account"/>
+              <visible value="true"/>
+            </properties>
+          </component>
+          <component id="fa6f0" class="javax.swing.JButton" binding="startWindow_RemoveAccountBtn">
+            <constraints>
+              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="40"/>
+                <maximum-size width="-1" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-7482624"/>
+              <borderPainted value="false"/>
+              <focusPainted value="true"/>
+              <focusable value="true"/>
+              <font name="Public Sans" size="12" style="0"/>
+              <foreground color="-16777216"/>
+              <text value="Remove Account"/>
+            </properties>
+          </component>
+          <component id="7817a" class="javax.swing.JButton" binding="startWindow_ViewAccountsBtn">
+            <constraints>
+              <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="40"/>
+                <maximum-size width="-1" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-7482624"/>
+              <borderPainted value="false"/>
+              <focusPainted value="true"/>
+              <focusable value="true"/>
+              <font name="Public Sans" size="12" style="0"/>
+              <foreground color="-16777216"/>
+              <text value="View Accounts"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="c5bed" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="122" height="35"/>
+          </grid>
+          <gridbag top="20" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="2e269" class="javax.swing.JButton" binding="startWindow_ExitBtn">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="60" height="40"/>
+                <maximum-size width="60" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-10646528"/>
+              <borderPainted value="false"/>
+              <focusPainted value="true"/>
+              <focusable value="true"/>
+              <font name="Public Sans" size="12" style="0"/>
+              <foreground color="-16777216"/>
+              <text value="Exit"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
   </grid>
 </form>
