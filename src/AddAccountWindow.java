@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.regex.*;
 import java.awt.event.*;
 import java.util.regex.Pattern;
+import classes.Account;
 
 public class AddAccountWindow extends JFrame {
     private JPanel mainPanel;
@@ -17,11 +19,11 @@ public class AddAccountWindow extends JFrame {
     private JTextField addAccountWindow_AccountPasswordTE;
     private JLabel addAccountWindow_ErrorLabel;
 
-
-    private ImageIcon bgGradient;
+    private ArrayList<Account> storedAccounts = StartWindow.storedAccounts;
 
 
     public AddAccountWindow() {
+
 
         // Displays the content
         setContentPane(mainPanel);
@@ -41,6 +43,7 @@ public class AddAccountWindow extends JFrame {
 
             }
         });
+
 
         // Window setup
         setSize(750, 800);
@@ -111,7 +114,6 @@ public class AddAccountWindow extends JFrame {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Added Account!");
 
                 Boolean emptyInputs = false;
                 Boolean accountAlreadyExists = false;
@@ -120,6 +122,15 @@ public class AddAccountWindow extends JFrame {
                 String emptyInputsError = "Error: One or more inputs are empty or the first value is a space.";
                 String accountAlreadyExistsError = "Error: That email is already in use.";
                 String invalidEmailError = "Error: That email is invalid.";
+
+                Account checkAccount = new Account(addAccountWindow_AccountTypeTE.getText(), addAccountWindow_AccountEmailTE.getText(), addAccountWindow_AccountPasswordTE.getText());
+
+                // Checking if account already exists
+                if (storedAccounts.contains(checkAccount)) {
+                    accountAlreadyExists = true;
+
+                    System.out.println(true);
+                }
 
                 // Checking if any of the inputs are empty or has a space
                 if (addAccountWindow_AccountTypeTE.getText().isEmpty() || addAccountWindow_AccountTypeTE.getText().charAt(0) == ' ') {
@@ -141,19 +152,31 @@ public class AddAccountWindow extends JFrame {
                 }
 
                 // Displaying error text
-                if (emptyInputs) {
+                if (emptyInputs || invalidEmail) {
+                    String errorMessage = "";
+                    if (emptyInputs) {
+                        errorMessage = emptyInputsError + "\n";
+                    }
+//                    if (accountAlreadyExists) {
+//                        errorMessage = accountAlreadyExistsError + "\n";
+//                    }
+                    if (invalidEmail) {
+                        errorMessage = invalidEmailError + "\n";
+                    }
+                    addAccountWindow_ErrorLabel.setText(errorMessage);
+                    addAccountWindow_ErrorLabel.setForeground(Color.RED);
                     addAccountWindow_ErrorLabel.setVisible(true);
-                    addAccountWindow_ErrorLabel.setText(emptyInputsError);
-                }
-                if (invalidEmail) {
-                    addAccountWindow_ErrorLabel.setVisible(true);
-                    addAccountWindow_ErrorLabel.setText(invalidEmailError);
-                }
+                } else {
+                    String accountType = addAccountWindow_AccountTypeTE.getText();
+                    String accountEmail = addAccountWindow_AccountEmailTE.getText();
+                    String accountPassword = addAccountWindow_AccountPasswordTE.getText();
 
-                // Adding account if things are correct
-                if (!emptyInputs && !invalidEmail && !accountAlreadyExists) {
-                    addAccountWindow_ErrorLabel.setVisible(false);
-                    addAccountWindow_ErrorLabel.setText("Error: PLACE_TEXT_HERE");
+
+                    // Add account if not already in the array
+
+
+                    Account account = new Account(accountType, accountEmail, accountPassword);
+                    storedAccounts.add(account);
                 }
 
 

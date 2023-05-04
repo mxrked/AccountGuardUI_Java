@@ -2,7 +2,9 @@ import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.border.*;
+import classes.Account;
 
 public class StartWindow extends JFrame {
     private JPanel mainPanel;
@@ -15,7 +17,7 @@ public class StartWindow extends JFrame {
     private JButton startWindow_ExitBtn;
     private ImageIcon bgGradient;
 
-
+    public static ArrayList<Account> storedAccounts = new ArrayList<>(); // THIS IS USED AS A GLOBAL THAT WILL HOLD THE ACCOUNTS
 
     public StartWindow() {
 
@@ -45,6 +47,10 @@ public class StartWindow extends JFrame {
         Image scaledLockLogoImage = lockLogo.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
         ImageIcon scaledLockLogoIcon = new ImageIcon(scaledLockLogoImage);
         startWindow_MainHeadingImgLabel.setIcon(scaledLockLogoIcon);
+
+        // Making the label the first thing tabbed on
+        startWindow_MainHeadingTextLabel.setFocusable(true);
+        startWindow_MainHeadingTextLabel.requestFocus();
 
         // Adding a background image to mainPanel
         bgGradient = new ImageIcon("assets/imgs/bg.png");
@@ -145,7 +151,21 @@ public class StartWindow extends JFrame {
                 setVisible(false);
             }
         });
+        startWindow_AddAccountBtn.addFocusListener(new FocusListener() {
+            /**
+             * Removing the ability to tab to the label once the user tabs to the next thing (addAccount btn)
+             * @param e the event to be processed
+             */
+            @Override
+            public void focusGained(FocusEvent e) {
+                startWindow_MainHeadingTextLabel.setFocusable(false);
+            }
 
+            @Override
+            public void focusLost(FocusEvent e) {
+                startWindow_MainHeadingTextLabel.setFocusable(false);
+            }
+        });
         // Remove Account btn
         startWindow_RemoveAccountBtn.addMouseListener(new MouseAdapter() {
             /**
@@ -172,6 +192,23 @@ public class StartWindow extends JFrame {
 
                 RemoveAccountWindow window = new RemoveAccountWindow();
                 window.setVisible(true);
+
+                // Making the label the first thing tabbed on
+                window.removeAccountWindow_MainHeadingTextLabel.setFocusable(true);
+                window.removeAccountWindow_MainHeadingTextLabel.requestFocus();
+
+                // Removing the ability to tab to the label once the user tabs to the next thing (addAccountWindow_AccountTypeTE)
+                window.removeAccountWindow_MainHeadingTextLabel.addFocusListener(new FocusListener() {
+                    @Override
+                    public void focusGained(FocusEvent e) {
+                        window.removeAccountWindow_MainHeadingTextLabel.setFocusable(false);
+                    }
+
+                    @Override
+                    public void focusLost(FocusEvent e) {
+                        window.removeAccountWindow_MainHeadingTextLabel.setFocusable(false);
+                    }
+                });
 
                 // This makes it so the window will stay where to window was last position
                 window.setLocation(getLocation());
@@ -204,8 +241,49 @@ public class StartWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Routing to View Accounts Window.");
 
+                // Adding accounts to the lists
+
+
+
                 ViewAccountsWindow window = new ViewAccountsWindow();
                 window.setVisible(true);
+
+                DefaultListModel<String> typeModel = new DefaultListModel<>();
+                DefaultListModel<String> emailModel = new DefaultListModel<>();
+                DefaultListModel<String> passwordModel = new DefaultListModel<>();
+
+                for (Account obj : storedAccounts) {
+                    typeModel.addElement(obj.getType());
+                    emailModel.addElement(obj.getEmail());
+                    passwordModel.addElement(obj.getPassword());
+                }
+
+                window.viewAccountsWindow_AccountTypeList.setModel(typeModel);
+                window.viewAccountsWindow_AccountEmailList.setModel(emailModel);
+                window.viewAccountsWindow_AccountPasswordList.setModel(passwordModel);
+
+//                for (Account obj : storedAccounts) {
+//
+//                    window.viewAccountsWindow_AccountTypeList.add(obj.getType());
+//
+//                }
+
+                // Making the label the first thing tabbed on
+                window.viewAccountsWindow_MainHeadingTextLabel.setFocusable(true);
+                window.viewAccountsWindow_MainHeadingTextLabel.requestFocus();
+
+                // Removing the ability to tab to the label once the user tabs to the next thing (addAccountWindow_AccountTypeTE)
+                window.viewAccountsWindow_MainHeadingTextLabel.addFocusListener(new FocusListener() {
+                    @Override
+                    public void focusGained(FocusEvent e) {
+                        window.viewAccountsWindow_MainHeadingTextLabel.setFocusable(false);
+                    }
+
+                    @Override
+                    public void focusLost(FocusEvent e) {
+                        window.viewAccountsWindow_MainHeadingTextLabel.setFocusable(false);
+                    }
+                });
 
                 // This makes it so the window will stay where to window was last position
                 window.setLocation(getLocation());
@@ -215,22 +293,7 @@ public class StartWindow extends JFrame {
         });
 
 
-        // Making the label the first thing tabbed on
-        startWindow_MainHeadingTextLabel.setFocusable(true);
-        startWindow_MainHeadingTextLabel.requestFocus();
 
-        // Removing the ability to tab to the label once the user tabs to the next thing (addAccount btn)
-        startWindow_AddAccountBtn.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                startWindow_MainHeadingTextLabel.setFocusable(false);
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                startWindow_MainHeadingTextLabel.setFocusable(false);
-            }
-        });
 
     }
 
